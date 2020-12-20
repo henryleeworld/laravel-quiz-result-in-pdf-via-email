@@ -1,6 +1,9 @@
 <?php
 
-use App\Question;
+namespace Database\Seeders;
+
+use App\Models\Question;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class OptionsTableSeeder extends Seeder
@@ -12,7 +15,7 @@ class OptionsTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = Factory::create();
         $questions = Question::all();
 
         foreach($questions as $question)

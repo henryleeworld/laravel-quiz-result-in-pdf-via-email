@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Option extends Model
 {
     use SoftDeletes;
 
-    public $table = 'categories';
+    public $table = 'options';
 
     protected $dates = [
         'created_at',
@@ -18,14 +18,16 @@ class Category extends Model
     ];
 
     protected $fillable = [
-        'name',
+        'points',
         'created_at',
         'updated_at',
         'deleted_at',
+        'question_id',
+        'option_text',
     ];
 
-    public function categoryQuestions()
+    public function question()
     {
-        return $this->hasMany(Question::class, 'category_id', 'id');
+        return $this->belongsTo(Question::class, 'question_id');
     }
 }

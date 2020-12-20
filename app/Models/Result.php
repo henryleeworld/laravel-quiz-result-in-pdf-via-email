@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model
+class Result extends Model
 {
     use SoftDeletes;
 
-    public $table = 'roles';
+    public $table = 'results';
 
     protected $dates = [
         'created_at',
@@ -18,19 +18,20 @@ class Role extends Model
     ];
 
     protected $fillable = [
-        'title',
+        'user_id',
         'created_at',
         'updated_at',
         'deleted_at',
+        'total_points',
     ];
 
-    public function rolesUsers()
+    public function user()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function permissions()
+    public function questions()
     {
-        return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Question::class)->withPivot(['option_id', 'points']);
     }
 }

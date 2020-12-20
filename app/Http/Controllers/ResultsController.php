@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Result;
 use App\Notifications\SendResultsPdfNotification;
-use App\Result;
 use Illuminate\Support\Facades\File;
 use PDF;
 

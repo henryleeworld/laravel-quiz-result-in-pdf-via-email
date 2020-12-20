@@ -1,6 +1,9 @@
 <?php
 
-use App\Category;
+namespace Database\Seeders;
+
+use App\Models\Category;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class CategoriesTableSeeder extends Seeder
@@ -12,7 +15,7 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = Factory::create();
 
         foreach(range(1,5) as $id)
         {

@@ -1,21 +1,22 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
+use App\Notifications\VerifyUserNotification;
 use Carbon\Carbon;
 use Hash;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
-use App\Notifications\VerifyUserNotification;
 
 class User extends Authenticatable
 {
-    use SoftDeletes, Notifiable, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     public $table = 'users';
 
@@ -41,7 +42,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**

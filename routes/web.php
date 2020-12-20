@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\QuizzesController;
+use App\Http\Controllers\ResultsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,20 +22,20 @@ Route::get('/', function () {
 });
 // User
 Route::group(['as' => 'client.', 'middleware' => ['auth']], function () {
-    Route::get('home', 'HomeController@redirect');
-    Route::get('dashboard', 'HomeController@index')->name('home');
-    Route::get('change-password', 'ChangePasswordController@create')->name('password.create');
-    Route::post('change-password', 'ChangePasswordController@update')->name('password.update');
-    Route::get('quiz', 'QuizzesController@index')->name('quiz');
-    Route::post('quiz', 'QuizzesController@store')->name('quiz.store');
-    Route::get('results/{result_id}', 'ResultsController@show')->name('results.show');
-    Route::get('send/{result_id}', 'ResultsController@send')->name('results.send');
+    Route::get('home', [HomeController::class, 'redirect']);
+    Route::get('dashboard', [HomeController::class, 'index'])->name('home');
+    Route::get('change-password', [ChangePasswordController::class, 'create'])->name('password.create');
+    Route::post('change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+    Route::get('quiz', [QuizzesController::class, 'index'])->name('quiz');
+    Route::post('quiz', [QuizzesController::class, 'store'])->name('quiz.store');
+    Route::get('results/{result_id}', [ResultsController::class, 'show'])->name('results.show');
+    Route::get('send/{result_id}', [ResultsController::class, 'send'])->name('results.send');
 });
 
 Auth::routes();
 // Admin
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth.admin']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth.admin']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
@@ -61,3 +65,4 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('results/destroy', 'ResultsController@massDestroy')->name('results.massDestroy');
     Route::resource('results', 'ResultsController');
 });
+

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Http\Requests\StoreTestRequest;
-use App\Option;
+use App\Models\Category;
+use App\Models\Option;
 
 class QuizzesController extends Controller
 {
