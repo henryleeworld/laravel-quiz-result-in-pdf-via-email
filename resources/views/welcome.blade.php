@@ -3,12 +3,15 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <title>{{ config('app.name') }}</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+        @vite(['resources/sass/app.scss'])
         <!-- Styles -->
         <style>
             html, body {
@@ -72,12 +75,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">首頁</a>
+                        <a href="{{ url('/home') }}">{{ __('Home') }}</a>
                     @else
-                        <a href="{{ route('login') }}">登入</a>
+                        <a href="{{ route('login') }}">{{ __('Log In') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">註冊</a>
+                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @endauth
                 </div>
@@ -85,18 +88,18 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <a href="{{ route('client.quiz') }}">開始測驗</a>
+                    <a href="{{ route('client.quiz') }}">{{ __('Start Quiz') }}</a>
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">文件</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">新聞</a>
-                    <a href="https://blog.laravel.com">部落格</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://laravel.com/docs">{{ __('Docs') }}</a>
+                    <a href="https://laracasts.com">{{ __('Laracasts') }}</a>
+                    <a href="https://laravel-news.com">{{ __('News') }}</a>
+                    <a href="https://blog.laravel.com">{{ __('Blog') }}</a>
+                    <a href="https://nova.laravel.com">{{ __('Nova') }}</a>
+                    <a href="https://forge.laravel.com">{{ __('Forge') }}</a>
+                    <a href="https://vapor.laravel.com">{{ __('Vapor') }}</a>
+                    <a href="https://github.com/laravel/laravel">{{ __('GitHub') }}</a>
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ class ChangePasswordController extends Controller
 
         auth()->user()->update(['password' => $request->input('password')]);
 
-        return redirect()->back()->withStatus('Password changed successfully.');
+        return redirect()->back()->withStatus(__('Password changed successfully.'));
     }
 
     /**

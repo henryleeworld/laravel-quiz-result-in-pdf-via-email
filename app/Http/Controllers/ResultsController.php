@@ -30,6 +30,6 @@ class ResultsController extends Controller
         auth()->user()->notify(new SendResultsPdfNotification($result));
         File::delete(storage_path($filename));
 
-        return redirect()->route('client.results.show', $result->id)->withStatus('你的測驗結果已經成功寄送！');
+        return redirect()->route('client.results.show', $result->id)->withStatus(__('Your quiz results have been sent successfully!'));
     }
 }
